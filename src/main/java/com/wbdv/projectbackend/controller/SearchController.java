@@ -11,7 +11,7 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class SearchController {
 
-    AmazonProductAPI amazonProductAPI = new AmazonProductAPI();
+    AmazonProductAPI amazonProductAPI = AmazonProductAPI.getInstance();
 
     @GetMapping("/api/amazon/product/")
     public List<SearchResponse> findByTitle(@RequestParam("searchText") String searchText) {
