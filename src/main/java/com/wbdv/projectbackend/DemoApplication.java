@@ -1,4 +1,4 @@
-package com.example.wbdvf19muenchowsserverjava;
+package com.wbdv.projectbackend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
