@@ -7,16 +7,17 @@ public class AmazonItem {
     private String author;
     private String manufacturer;
     private String productGroup;
+    private String url;
+    private String largeImageUrl;
 
-    public AmazonItem(Integer id, String title, String author, String manufacturer, String productGroup) {
+    public AmazonItem(Integer id, String title, String author, String manufacturer, String productGroup, String url, String largeImageUrl) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.manufacturer = manufacturer;
         this.productGroup = productGroup;
-    }
-
-    public AmazonItem() {
+        this.url = url;
+        this.largeImageUrl = largeImageUrl;
     }
 
     public Integer getId() {
@@ -57,5 +58,21 @@ public class AmazonItem {
 
     public void setProductGroup(String productGroup) {
         this.productGroup = productGroup;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getLargeImageUrl() {
+        return largeImageUrl;
+    }
+
+    public void setLargeImageUrl(String largeImageUrl) {
+        this.largeImageUrl = largeImageUrl;
     }
 }
