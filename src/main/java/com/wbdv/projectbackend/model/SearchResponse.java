@@ -2,21 +2,24 @@ package com.wbdv.projectbackend.model;
 
 public class SearchResponse {
 
-    private Integer id;
+    private String id;
     private String title;
     private String urlPictureSmall;
 
-    public SearchResponse(Integer id, String title, String urlPictureSmall) {
+    public SearchResponse(String id, String title, String urlPictureSmall) {
         this.id = id;
         this.title = title;
         this.urlPictureSmall = urlPictureSmall;
     }
 
-    public Integer getId() {
+    public SearchResponse() {
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

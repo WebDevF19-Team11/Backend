@@ -2,7 +2,7 @@ package com.wbdv.projectbackend.model;
 
 public class AmazonItem {
 
-    private Integer id;
+    private String id;
     private String title;
     private String author;
     private String manufacturer;
@@ -10,7 +10,7 @@ public class AmazonItem {
     private String url;
     private String largeImageUrl;
 
-    public AmazonItem(Integer id, String title, String author, String manufacturer, String productGroup, String url, String largeImageUrl) {
+    public AmazonItem(String id, String title, String author, String manufacturer, String productGroup, String url, String largeImageUrl) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -20,11 +20,11 @@ public class AmazonItem {
         this.largeImageUrl = largeImageUrl;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

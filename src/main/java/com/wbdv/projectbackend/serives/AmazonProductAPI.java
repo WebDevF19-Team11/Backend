@@ -2,9 +2,17 @@ package com.wbdv.projectbackend.serives;
 
 import com.wbdv.projectbackend.model.AmazonItem;
 import com.wbdv.projectbackend.model.SearchResponse;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+import javax.xml.rpc.ServiceException;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,7 +22,7 @@ public class AmazonProductAPI {
     private AmazonProductAPI() {
     }
 
-    private static  AmazonProductAPI INSTANCE;
+    private static AmazonProductAPI INSTANCE;
 
     public static AmazonProductAPI getInstance() {
         if (INSTANCE == null)
@@ -22,25 +30,34 @@ public class AmazonProductAPI {
         return INSTANCE;
     }
 
-    private SearchResponse[] searchResponses = new SearchResponse[]{new SearchResponse(1,"Produkt 1","ecx.images-amazon.com/images/I/519SgX2wwDL._SL75_.jpg"),
-            new SearchResponse(2,"Produkt 2","ecx.images-amazon.com/images/I/519SgX2wwDL._SL75_.jpg"),
-            new SearchResponse(3,"Produkt 3","ecx.images-amazon.com/images/I/519SgX2wwDL._SL75_.jpg")};
-    private AmazonItem[] amazonItems = new AmazonItem[]{new AmazonItem(1,"title1","author1", "manu1", "book","https://www.amazon.com/Rio-2-Sing-Along-Anne-Hathaway/dp/B00P7PJ77K/ref=sr_1_6?keywords=rio&qid=1573344822&sr=8-6","ecx.images-amazon.com/images/I/519SgX2wwDL._SL500_.jpg"),
-            new AmazonItem(2,"title2","author2", "manu2", "car","https://www.amazon.com/Rio-2-Sing-Along-Anne-Hathaway/dp/B00P7PJ77K/ref=sr_1_6?keywords=rio&qid=1573344822&sr=8-6", "ecx.images-amazon.com/images/I/519SgX2wwDL._SL500_.jpg"),
-            new AmazonItem(3,"title3","author3", "manu3", "laptop","https://www.amazon.com/Rio-2-Sing-Along-Anne-Hathaway/dp/B00P7PJ77K/ref=sr_1_6?keywords=rio&qid=1573344822&sr=8-6","ecx.images-amazon.com/images/I/519SgX2wwDL._SL500_.jpg")
-
-    };
-
-    //https://docs.aws.amazon.com/AWSECommerceService/latest/DG/EX_RetrievingImages.html
-    //https://docs.aws.amazon.com/AWSECommerceService/latest/DG/ItemSearch.html
-
-
-    public List<SearchResponse> executeFulltextSearch(String searchText) {
-        return Arrays.asList(searchResponses).stream().filter(searchResponse -> searchResponse.getTitle().contains(searchText)).collect(Collectors.toList());
+    public List<SearchResponse> executeFulltextSearch(String searchText) throws IOException {
+        //https://www.javacodegeeks.com/2012/09/simple-rest-client-in-java.html
+        HttpClient client = new DefaultHttpClient();
+        HttpGet request = new HttpGet("http://www.omdbapi.com/?apikey=dbd814cb&t=" + searchText);
+        HttpResponse response = client.execute(request);
+        BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+        String object = rd.readLine();
+        JSONObject obj = new JSONObject(object);
+        String id = obj.getString("imdbID");
+        String title = obj.getString("Title");
+        String picture = obj.getString("Poster");
+        return Arrays.asList(new SearchResponse[]{new SearchResponse(id,title,picture)});
     }
 
-    public AmazonItem getItemDetail(Integer asin) {
-        return Arrays.stream(amazonItems).filter(amazonItems -> amazonItems.getId().equals(asin)).findAny().orElse(null);
+    public AmazonItem getItemDetail(String asin) throws IOException {
+        //https://www.javacodegeeks.com/2012/09/simple-rest-client-in-java.html
+        HttpClient client = new DefaultHttpClient();
+        HttpGet request = new HttpGet("http://www.omdbapi.com/?apikey=dbd814cb&i=" + asin);
+        HttpResponse response = client.execute(request);
+        BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+        String object = rd.readLine();
+        JSONObject obj = new JSONObject(object);
+        String id = obj.getString("imdbID");
+        String title = obj.getString("Title");
+        String picture = obj.getString("Poster");
+        String manufacturer = obj.getString("Country");
+        String auther = obj.getString("Director");
+        return new AmazonItem(id,title,auther,manufacturer,"Movie",picture,picture);
     }
 
 }
