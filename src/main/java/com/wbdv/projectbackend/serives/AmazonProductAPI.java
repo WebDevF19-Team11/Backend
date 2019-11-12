@@ -6,16 +6,13 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
-import javax.xml.rpc.ServiceException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class AmazonProductAPI {
 
@@ -41,7 +38,7 @@ public class AmazonProductAPI {
         String id = obj.getString("imdbID");
         String title = obj.getString("Title");
         String picture = obj.getString("Poster");
-        return Arrays.asList(new SearchResponse[]{new SearchResponse(id,title,picture)});
+        return Arrays.asList(new SearchResponse[]{new SearchResponse(id, title, picture)});
     }
 
     public AmazonItem getItemDetail(String asin) throws IOException {
@@ -57,7 +54,7 @@ public class AmazonProductAPI {
         String picture = obj.getString("Poster");
         String manufacturer = obj.getString("Country");
         String auther = obj.getString("Director");
-        return new AmazonItem(id,title,auther,manufacturer,"Movie",picture,picture);
+        return new AmazonItem(id, title, auther, manufacturer, "Movie", picture, picture);
     }
 
 }
