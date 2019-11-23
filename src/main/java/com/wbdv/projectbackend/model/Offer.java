@@ -27,4 +27,44 @@ public class Offer {
     private double price;
 
     private enum type {buy,rent}
+
+    public Integer getOfferId() {
+        return offerId;
+    }
+
+    public void setOfferId(Integer offerId) {
+        this.offerId = offerId;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public User getSeller() {
+        return seller;
+    }
+
+    public void setSeller(User seller) {
+        this.seller = seller;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 }
