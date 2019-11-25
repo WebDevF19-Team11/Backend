@@ -19,4 +19,6 @@ public class UserController extends BaseController<User, Integer> {
     public BaseService<User, Integer> getService() {
         return service;
     }
+
+
 }
