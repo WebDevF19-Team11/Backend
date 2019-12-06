@@ -2,9 +2,9 @@ package com.wbdv.projectbackend.model;
 
 public class BestBuyItem {
 
-    private int sku;
-    private String salePrice;
-    private String name;
+    protected int sku;
+    protected String salePrice;
+    protected String name;
 
     public int getSku() {
         return sku;

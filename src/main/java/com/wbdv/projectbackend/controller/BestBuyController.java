@@ -20,4 +20,9 @@ public class BestBuyController {
         return ResponseEntity.ok(bestBuyService.getProductsByTitle(title));
     }
 
+    @GetMapping(value = "/api/best-buy/products/sku/{sku}")
+    public ResponseEntity getProductsBySKU(@PathVariable("sku") String sku) {
+        return ResponseEntity.ok(bestBuyService.getProductsBySKU(sku));
+    }
+
 }

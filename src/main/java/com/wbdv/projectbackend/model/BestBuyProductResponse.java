@@ -1,9 +1,5 @@
 package com.wbdv.projectbackend.model;
 
-import com.wbdv.projectbackend.model.BestBuyItem;
-
-import java.util.List;
-
 public class BestBuyProductResponse {
 
     private int from;
@@ -15,7 +11,6 @@ public class BestBuyProductResponse {
     private float totalTime;
     private boolean partial;
     private String canonicalUrl;
-    private List<BestBuyItem> products;
 
     public int getFrom() {
         return from;
@@ -89,14 +84,6 @@ public class BestBuyProductResponse {
         this.canonicalUrl = canonicalUrl;
     }
 
-    public List<BestBuyItem> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<BestBuyItem> products) {
-        this.products = products;
-    }
-
     @Override
     public String toString() {
         return "BestBuyProductResponse{" +
@@ -109,7 +96,6 @@ public class BestBuyProductResponse {
                 ", totalTime=" + totalTime +
                 ", partial=" + partial +
                 ", canonicalUrl='" + canonicalUrl + '\'' +
-                ", products=" + products +
                 '}';
     }
 }
