@@ -4,12 +4,15 @@ import com.wbdv.projectbackend.model.User;
 import com.wbdv.projectbackend.serives.BaseService;
 import com.wbdv.projectbackend.serives.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+@CrossOrigin
 @RestController
-@RequestMapping("user")
+@RequestMapping("api/user")
 public class UserController extends BaseController<User, Integer> {
 
     @Autowired
@@ -20,5 +23,13 @@ public class UserController extends BaseController<User, Integer> {
         return service;
     }
 
+    @GetMapping("whoami")
+    public ResponseEntity whoAmI() {
+        try {
+            return ResponseEntity.ok(service.getLoggedUser());
+        } catch (Exception e) {
+            return ResponseEntity.ok(e.getMessage());
+        }
+    }
 
 }

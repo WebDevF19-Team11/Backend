@@ -31,4 +31,5 @@ public abstract class BaseService<T, ID> {
     public void delete(ID id) {
         getRepository().deleteById(id);
     }
+
 }
