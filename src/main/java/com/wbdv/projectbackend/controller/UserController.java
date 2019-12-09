@@ -1,10 +1,11 @@
 package com.wbdv.projectbackend.controller;
 
 import com.wbdv.projectbackend.model.User;
-import com.wbdv.projectbackend.serives.BaseService;
 import com.wbdv.projectbackend.serives.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -34,6 +35,18 @@ public class UserController {
     @ResponseBody
     public User getUserById(@PathVariable Integer id) {
         return service.getById(id);
+    }
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public List<User> getAllUser() {
+        return service.getAll();
+    }
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.DELETE, produces = "application/json", path = "/{id}")
+    @ResponseBody
+    public void deleteUser(@PathVariable Integer id) {
+        service.delete(id);
     }
 
 
