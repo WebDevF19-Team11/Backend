@@ -1,24 +1,28 @@
 package com.wbdv.projectbackend.controller;
 
-import com.wbdv.projectbackend.model.Category;
-import com.wbdv.projectbackend.model.User;
-import com.wbdv.projectbackend.serives.BaseService;
+import com.wbdv.projectbackend.model.Offer;
 import com.wbdv.projectbackend.serives.CategoryService;
-import com.wbdv.projectbackend.serives.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
 @RequestMapping("category")
-public class CategoryController extends BaseController<Category, Integer> {
+public class CategoryController {
 
     @Autowired
     private CategoryService service;
 
-    @Override
-    public BaseService<Category, Integer> getService() {
-        return service;
+
+    @CrossOrigin
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.GET, produces = "application/json", path = "/{categoryId}/offer")
+    public List<Offer> getAll(@PathVariable Integer categoryId) {
+        return service.getOffersForCategory(categoryId);
     }
+
+
+
 }

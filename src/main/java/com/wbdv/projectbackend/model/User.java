@@ -13,8 +13,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer userId;
 
-
-    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "seller")
     private List<Offer> offerList;
 

@@ -10,12 +10,16 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer itemId;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Category> categoryList;
 
     private String title;
 
     private String description;
+
+    private String pictureUrl;
+
+    private String pictureBase64;
 
     public Integer getItemId() {
         return itemId;
@@ -47,5 +51,21 @@ public class Item {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
+    }
+
+    public String getPictureBase64() {
+        return pictureBase64;
+    }
+
+    public void setPictureBase64(String pictureBase64) {
+        this.pictureBase64 = pictureBase64;
     }
 }

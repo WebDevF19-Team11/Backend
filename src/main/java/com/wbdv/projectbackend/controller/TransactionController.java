@@ -21,4 +21,6 @@ public class TransactionController extends BaseController<Transaction, Integer> 
     public BaseService<Transaction, Integer> getService() {
         return service;
     }
+
+
 }

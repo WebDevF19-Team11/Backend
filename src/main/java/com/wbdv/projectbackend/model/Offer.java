@@ -21,7 +21,7 @@ public class Offer {
     @JoinColumn(name = "userId", nullable = false)
     private User seller;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Item item;
 
     private double price;
