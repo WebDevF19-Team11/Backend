@@ -26,7 +26,7 @@ public class UserService extends BaseService<User, Integer> {
         return Streams.stream(userRepository.findAll())
                 .filter(u -> u.getPw().equals(user.getPw())&& u.getUsername().equals(user.getUsername()))
                 .findAny()
-                .orElseThrow(NullPointerException::new)
+                .orElse(new User())
                 .getUserId();
     }
 
