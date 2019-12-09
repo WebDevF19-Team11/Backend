@@ -40,4 +40,8 @@ public class UserService extends BaseService<User, Integer> {
         String saltedPw = object.getPw() + "d6 e9 68 3b 8e d9 62 46 40 e8 ";
         return Hashing.sha256().hashString(saltedPw, Charset.defaultCharset()).toString();
     }
+
+    public User getById(Integer id) {
+        return userRepository.findById(id).orElseThrow(NullPointerException::new);
+    }
 }

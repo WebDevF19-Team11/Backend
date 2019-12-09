@@ -29,4 +29,14 @@ public class UserController {
     }
 
 
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.POST, produces = "application/json", path = "/{id}")
+    @ResponseBody
+    public User getUserById(@PathVariable Integer id) {
+        return service.getById(id);
+    }
+
+
+
+
 }

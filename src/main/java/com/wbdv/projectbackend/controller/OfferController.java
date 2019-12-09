@@ -28,4 +28,5 @@ public class OfferController extends BaseController<Offer, Integer> {
         return service.getByFulltext(searchText);
     }
 
+
 }
