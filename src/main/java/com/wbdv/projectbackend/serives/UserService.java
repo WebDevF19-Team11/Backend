@@ -24,6 +24,7 @@ public class UserService extends BaseService<User, Integer> {
     public Integer isRealUser(User user){
         user.setPw(securePw(user));
         return Streams.stream(userRepository.findAll())
+                .filter(u -> u.getPw() != null && u.getUsername() != null)
                 .filter(u -> u.getPw().equals(user.getPw())&& u.getUsername().equals(user.getUsername()))
                 .findAny()
                 .orElse(new User())
