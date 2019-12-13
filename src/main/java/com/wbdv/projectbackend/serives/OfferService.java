@@ -30,4 +30,9 @@ public class OfferService extends BaseService<Offer, Integer> {
                 .collect(Collectors.toList());
 
     }
+
+    public List<Offer> getOffersByUsername(String username) {
+        return offerRepository.findAllBySellerUsername(username);
+    }
+
 }

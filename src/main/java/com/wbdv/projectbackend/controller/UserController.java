@@ -3,6 +3,7 @@ package com.wbdv.projectbackend.controller;
 import com.wbdv.projectbackend.model.User;
 import com.wbdv.projectbackend.serives.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,7 +15,6 @@ public class UserController {
 
     @Autowired
     private UserService service;
-
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, produces = "application/json")
@@ -49,7 +49,13 @@ public class UserController {
         service.delete(id);
     }
 
-
-
+    @GetMapping("{username}")
+    public ResponseEntity whoAmI(@PathVariable("username") String username) {
+        try {
+            return ResponseEntity.ok(service.getUserByUsername(username));
+        } catch (Exception e) {
+            return ResponseEntity.ok(e.getMessage());
+        }
+    }
 
 }

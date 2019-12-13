@@ -10,7 +10,7 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer itemId;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     private List<Category> categoryList;
 
     private String title;

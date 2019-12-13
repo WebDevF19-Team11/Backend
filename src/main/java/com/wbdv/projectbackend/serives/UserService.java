@@ -45,4 +45,9 @@ public class UserService extends BaseService<User, Integer> {
     public User getById(Integer id) {
         return userRepository.findById(id).orElseThrow(NullPointerException::new);
     }
+
+    public User getUserByUsername(String username) {
+        return userRepository.findOneByUsername(username);
+    }
+
 }
